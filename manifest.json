@@ -13,9 +13,9 @@
     "iconUrl": "https://raw.githubusercontent.com/googledatastudio/community-visualizations/master/docs/codelab/img/bar_chart.png",
     "description": "Bar chart written in d3.js",
     "resource": {
-      "js": "gs://myvizu/myvizu.js",
-      "config": "gs://myvizu/myvizu.json",
-      "css": "gs://myvizu/myvizu.css"
+      "js": "https://ilyamordasov.github.io/factoringplus.github.io/myvizu.js",
+      "config": "https://ilyamordasov.github.io/factoringplus.github.io/myvizu.json",
+      "css": "https://ilyamordasov.github.io/factoringplus.github.io/myvizu.css"
     }
   }]
 }
