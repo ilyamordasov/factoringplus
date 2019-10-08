@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "logoUrl": "https://raw.githubusercontent.com/googledatastudio/community-visualizations/master/docs/codelab/img/bar_chart.png",
+  "organization": "Data Studio Codelab",
+  "supportUrl": "https://ya.ru",
+  "packageUrl": "https://ya.ru",
+  "privacyPolicyUrl": "https://ya.ru",
+  "description": "test",
+  "devMode": true,
+  "components": [{
+    "id": "barchart",
+    "name": "Bar Chart",
+    "iconUrl": "https://raw.githubusercontent.com/googledatastudio/community-visualizations/master/docs/codelab/img/bar_chart.png",
+    "description": "Bar chart written in d3.js",
+    "resource": {
+      "js": "gs://myvizu/myvizu.js",
+      "config": "gs://myvizu/myvizu.json",
+      "css": "gs://myvizu/myvizu.css"
+    }
+  }]
+}
