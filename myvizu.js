@@ -71,7 +71,7 @@ function drawViz(data) {
     rect.setAttribute("rx", 4);
     rect.style.fill = fillColor;
     if (isHighlighted) {
-        var day = "20190913";//new Date().toJSON().slice(0,10).replace(/-/g,'');
+        var day = new Date().toJSON().slice(0,10).replace(/-/g,'');
         var hour = new Date().toJSON().slice(11,14);
         if (day == barData["dim"] || barData["dim"].indexOf(hour) != -1) {
           rect.style.fill = highlightColor;
