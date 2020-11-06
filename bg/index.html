@@ -7,6 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link href="style.css" rel="stylesheet" media="all">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
@@ -170,7 +171,7 @@
                                     </div>
                                     <div class="col-md-3 my-auto" ng-repeat="data in portfolio">
                                         <div class="row">
-                                            <div style="font-size: 48px;">{{htmlDecode(abbreviateNumber(data.value, 1))}}</div>
+                                            <span style="font-size: 48px;" ng-bind-html="abbreviateNumber(data.value, 1)"></span>
                                         </div>
                                         <div class="row" style="height: 24px;">
                                             <div class="col-md-2" style="padding-left:0; margin-right:24px;">
@@ -196,7 +197,7 @@
                                     </div>
                                     <div class="col-md-3 my-auto" ng-repeat="data in sdelki">
                                         <div class="row">
-                                            <div style="font-size: 48px;">{{htmlDecode(abbreviateNumber(data.value, 1))}}</div>
+                                            <span style="font-size: 48px;" ng-bind-html="abbreviateNumber(data.value, 1)"></span>
                                         </div>
                                         <div class="row" style="height: 24px;">
                                             <div class="col-md-2" style="padding-left:0; margin-right:24px;">
@@ -222,7 +223,7 @@
                                     </div>
                                     <div class="col-md-3 my-auto" ng-repeat="data in new_sdelki">
                                         <div class="row">
-                                            <span style="font-size: 48px;">{{htmlDecode(abbreviateNumber(data.value, 1))}}</span>
+                                            <span style="font-size: 48px;" ng-bind-html="abbreviateNumber(data.value, 1)"></span>
                                         </div>
                                         <div class="row" style="height: 24px;">
                                             <div class="col-md-2" style="padding-left:0; margin-right:24px;">
