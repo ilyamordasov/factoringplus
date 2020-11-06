@@ -1,7 +1,63 @@
-@media (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
     .container {
-        max-width: 94%;
+        max-width: 85%;
+        left:0;
     }
+
+    .progress-row {
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .progress-bar {
+        margin-top: 8px;
+        height: 4px;
+        border-radius: 20px;
+        background-color: #efefef;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .container {
+        width: 1600px;
+        height: 100%;
+    }
+
+    .container2 {
+        width: 1600px;
+        height: 100%;
+    }
+
+    .box {
+        background-color: #fff;
+        margin-top: 24px;
+        padding: 40px;
+        padding-bottom: 0;
+        border-radius: 20px;
+        box-shadow: 14px 13px 46px 14px rgba(242, 243, 245, 0.84);
+    }
+
+    .progress-row {
+        margin-top: 80px;
+        margin-bottom: 24px;
+    }
+
+    .progress-bar {
+        margin-top: 8px;
+        height: 8px;
+        border-radius: 20px;
+        background-color: #efefef;
+    }
+
+    .product {
+        right: 0px;
+    }
+}
+
+.carousel-inner .carousel-item {
+    transition: -webkit-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, -webkit-transform 0.5s ease;
 }
 
 body {
@@ -13,7 +69,6 @@ body {
 .container {
     position: relative;
     top: 16px;
-    left: 40px;
     z-index: 9999;
 }
 
@@ -125,15 +180,32 @@ body {
     top: 40px;
 }
 
-.progress-bar {
-    margin-top: 8px;
-    height: 4px;
-    border-radius: 20px;
-    background-color: #efefef;
-}
-
 .progress-value {
-    height: 4px;
+    height: 100%;
     border-radius: 20px;
     background-color: #ff9c23;
+}
+
+.increase {
+    position: absolute;
+    line-height: 8px;
+    color: #4CAF50;
+    top: 8px;
+}
+
+.increase::before {
+    content: "\25b2";/*"\2BC5";*/
+    font-size: 16px;
+}
+
+.decrease {
+    position: absolute;
+    line-height: 8px;
+    color: #F44336;
+    top: 8px;
+}
+
+.decrease::before {
+    content: "\25bc"; /*"\2BC6";*/
+    font-size: 16px;
 }
