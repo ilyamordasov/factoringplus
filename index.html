@@ -1,0 +1,124 @@
+<html lang="ru" charset="utf-8">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="style.css" rel="stylesheet" media="all">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    </head>
+    <body>
+        <div class="container" ng-app="AppController" ng-controller="Comission">
+            <div class="row">
+                <span class="col-md-4 label" ng-click="updateData()">ИТОГИ ДНЯ</span>
+                <div class="col-md-4 today my-auto">
+                    <div class="today-icon"></div>
+                    <span class="today-text">29 октября 2020</span>
+                </div>
+                <div class="col-md-4 product">
+                    <div class="product-oval"></div>
+                    <span class="product-text">Банковские гарантии</span>
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:40px;">
+                <div class="col-md-8 box" style="margin-right:24px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="today-label">Комиссия</span>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="today-sum" style="font-size: 72px;">{{comissions[0].value.toLocaleString('ru-RU')}} ₽</span>
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: {{getPercent(comissions, comissions[0].value, 'value')}}%;"></div>
+                            </div>
+                            <div ng-repeat="comission in comissions" ng-if="$index >= 1">
+                                <div class="row" style="margin-top: 24px;">
+                                    <div class="col-md-6">
+                                        <span>{{comission.label}}</span>
+                                    </div>
+                                    <div class="col-md-6" style="text-align:right; font-weight: 700;">
+                                        <span>{{comission.value.toLocaleString('ru-RU')}} ₽</span>
+                                    </div>
+                                    <div class="col-md-12 progress-bar">
+                                        <div class="progress-value" style="width: {{getPercent(comissions, comission.value, 'value')}}%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"></div>
+                </div>
+                <div class="col-md-3 box">
+                    <div class="row" style="margin-bottom: 24px;">
+                        <div class="col-md-12">
+                            <span class="today-label">Сделки</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="today-label" style="font-size:14px;margin-top:24px;">всего</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="today-label" style="font-size:14px;margin-top:24px;">по новым клиентам</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" ng-repeat="s in sdelki">
+                            <span class="today-sum">{{s.value}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" ng-repeat="s in sdelki">
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: {{getPercent(sdelki, s.value, 'value')}}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="today-sum" style="font-size: 12px;opacity:0.4;">шт.</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="today-sum" style="font-size: 12px;opacity:0.4;">шт.</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 24px; margin-bottom: 24px;">
+                        <div class="col-md-12">
+                            <span class="today-label">Средний чек</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="today-label" style="font-size:14px;margin-top:24px;">всего</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="today-label" style="font-size:14px;margin-top:24px;">по новым клиентам</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="cursor:hand;" ng-repeat="avg in sdelki" title="{{avg.avg_cheque.toLocaleString('ru-RU')}}">
+                            <span class="today-sum">{{(avg.avg_cheque/1000).toFixed(1)}} <span style="font-size:16px;">тыс.</span></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" ng-repeat="s in sdelki">
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: {{getPercent(sdelki, s.avg_cheque, 'avg_cheque')}}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="today-sum" style="font-size: 12px;opacity:0.4;">рублей</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="today-sum" style="font-size: 12px;opacity:0.4;">рублей</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="logo" src="assets/logo@3x.png"/>
+        <div class="circle"></div>
+        
+        <script src="app.js"></script>
+    </body>
+</html>
