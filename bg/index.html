@@ -11,7 +11,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div id="dashboard" class="carousel slide" data-ride="carousel" data-interval="false" ng-app="App" >
+        <div class="d-flex justify-content-center" style="position:absolute;width:100%;height: 100%;">
+            <div id="spinner" class="spinner-border" role="status" style="margin:auto"></div>
+        </div>
+        <div id="dashboard" class="carousel slide" data-ride="carousel" data-interval="false" ng-app="App" style="display: none;">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="container" ng-controller="Comission">
@@ -19,7 +22,7 @@
                             <span class="col-md-4 label" ng-click="updateData()">ИТОГИ ДНЯ</span>
                             <div class="col-md-4 today my-auto">
                                 <div class="today-icon"></div>
-                                <span class="today-text">29 октября 2020</span>
+                                <span class="today-text">{{today}}</span>
                             </div>
                             <div class="col-md-4 product">
                                 <div class="product-oval"></div>
@@ -45,8 +48,10 @@
                                                 <div class="col-md-6" style="text-align:right; font-weight: 700;">
                                                     <span>{{comission.value.toLocaleString('ru-RU')}} ₽</span>
                                                 </div>
-                                                <div class="col-md-12 progress-bar">
-                                                    <div class="progress-value" style="width: {{getPercent(comissions, comission.value, 'value')}}%;"></div>
+                                                <div class="col-md-12">
+                                                    <div class="progress-bar">
+                                                        <div class="progress-value" style="width: {{getPercent(comissions, comission.value, 'value')}}%;"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,7 +131,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="container" ng-controller="Values">
+                    <div class="container" ng-controller="Comission">
                         <div class="row">
                             <span class="col-md-5 label" ng-click="updateData()">СВОДНЫЕ ПОКАЗАТЕЛИ</span>
                             <div class="col-md-4 today my-auto">
@@ -145,7 +150,7 @@
                                             <span style="font-size: 20px;font-weight: 700;">На текущий день</span>
                                         </div>
                                         <div class="row">
-                                            <span style="opacity: 0.4;font-size: 14px;">26 октября 2020</span>
+                                            <span style="opacity: 0.4;font-size: 14px;">{{today}}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -153,7 +158,7 @@
                                             <span style="font-size: 20px;font-weight: 500;">Динамика месяца</span>
                                         </div>
                                         <div class="row">
-                                            <span style="opacity: 0.4;font-size: 14px;">Сентябрь</span>
+                                            <span style="opacity: 0.4;font-size: 14px;">{{month}}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -195,7 +200,7 @@
                                     <div class="col-md-3 my-auto">
                                         <span style="font-size: 18px;font-weight: 700;">Количество сделок</span>
                                     </div>
-                                    <div class="col-md-3 my-auto" ng-repeat="data in sdelki">
+                                    <div class="col-md-3 my-auto" ng-repeat="data in sdelki2">
                                         <div class="row">
                                             <span style="font-size: 48px;" ng-bind-html="abbreviateNumber(data.value, 1)"></span>
                                         </div>
@@ -225,7 +230,7 @@
                                         <div class="row">
                                             <span style="font-size: 48px;" ng-bind-html="abbreviateNumber(data.value, 1)"></span>
                                         </div>
-                                        <div class="row" style="height: 24px;">
+                                        <!--<div class="row" style="height: 24px;">
                                             <div class="col-md-2" style="padding-left:0; margin-right:24px;">
                                                 <span class="{{data.plan < 0 ? 'decrease' : 'increase'}}" style="font-size:18px; color:{{data.plan < 0 ? '#ff7f00' : '#67c23a'}};">{{data.plan}}%</span>
                                             </div>
@@ -240,7 +245,7 @@
                                             <div class="col-md-2" style="padding-left:0;">
                                                 <span style="font-size:12px; opacity:0.4">за год</span>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
