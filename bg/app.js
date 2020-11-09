@@ -29,7 +29,7 @@
         $scope.auth = function() {
             var settings = {
                 url: "https://cors-anywhere.herokuapp.com/https://cloudfort.izumfin.com/api/auth",
-                method: "POST",
+                method: "OPTIONS",
                 headers: {
                   "Content-Type": "application/json"
                 },
@@ -162,7 +162,7 @@
                             $scope.$apply();
                             
                             $("#spinner").addClass('d-none');
-                            $("#dashboard").show();
+                            $("#dashboard").addClass('in');
 
                         });
                     $scope.$apply();
