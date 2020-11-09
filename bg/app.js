@@ -29,7 +29,9 @@
         $scope.auth = function() {
             var settings = {
                 url: "https://cors-anywhere.herokuapp.com/https://cloudfort.izumfin.com/api/auth",
-                method: "OPTIONS",
+                method: "POST",
+                "crossdomain": true,
+                "dataType": "json",
                 headers: {
                   "Content-Type": "application/json"
                 },
@@ -66,8 +68,11 @@
                 var settings = {
                     "url": "https://cors-anywhere.herokuapp.com/https://cloudfort.izumfin.com/api/Dashboard/bg/gar_count?date_s="+end+"&date_e="+start,
                     "method": "GET",
+                    "crossdomain": true,
+                    "dataType": "json",
                     "headers": {
-                        "SessionID": $scope.sessionID
+                        "SessionID": $scope.sessionID,
+                        "Content-type": "application/json"
                     }
                 };
                 // console.log(settings.url)
@@ -162,7 +167,7 @@
                             $scope.$apply();
                             
                             $("#spinner").addClass('d-none');
-                            $("#dashboard").addClass('in');
+                            $('#dashboard').fadeIn('slow');
 
                         });
                     $scope.$apply();
