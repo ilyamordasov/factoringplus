@@ -165,9 +165,11 @@
                             $scope.sdelki2[1].year = Math.floor(100 * sdelki_1 / sdelki - 100);
                             
                             $scope.$apply();
-                            
-                            $("#spinner").addClass('d-none');
-                            $('#dashboard').fadeIn('slow');
+                            setTimeout(() => {
+                                $("#spinner").addClass('d-none');
+                                $('#dashboard').fadeIn('slow');
+                                $('#footer').fadeIn('slow');
+                            },1000);
 
                         });
                     $scope.$apply();
