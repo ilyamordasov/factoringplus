@@ -16,6 +16,8 @@
     var app = angular.module('App', []);
     app.controller('Comission', function($scope, $sce, $http) {
 
+
+
         $scope.plan = [{"count":1234,"date":"январь","portfolio":1.076209747191E7},{"count":856,"date":"февраль","portfolio":9749297.47191},{"count":2026,"date":"март","portfolio":9593297.47191},{"count":1612,"date":"апрель","portfolio":1.152769747191E7},{"count":1156,"date":"май","portfolio":1.122145747191E7},{"count":1356,"date":"июнь","portfolio":1.284865747191E7},{"count":1600,"date":"июль","portfolio":1.45785720382544E7},{"count":1800,"date":"август","portfolio":1.58546434543944E7},{"count":1960,"date":"сентябрь","portfolio":1.82066434543944E7},{"count":2352,"date":"октябрь","portfolio":2.02317074208544E7},{"count":2822.4,"date":"ноябрь","portfolio":2.36185874208544E7},{"count":3669.12,"date":"декабрь","portfolio":2.80215314208544E7}];
 
         $scope.getPercent = function(array, value, key) {
@@ -192,11 +194,6 @@
         ];
 
         $scope.auth();
-        let timerId = setInterval(() => {
-            console.log("tick");
-            $scope.auth();
-            console.log("tick");
-        }, 5 * 60 * 1000);
     //});
 
     //app.controller('Values', function($scope, $sce, $http) {
@@ -236,5 +233,15 @@
                 e = ((num < 1000) ? sign+(num/1000).toFixed(fixed) : sign+d) + "<span style='font-size:16px;'>" + [' тыс.', ' тыс.', ' млн.', ' млрд.', ' трлн.'][k] + "</span>"; // append power
             return (num < 100) ? num.toFixed(fixed) : $sce.trustAsHtml(e);
         }
+
+        $scope.strict = function(value) {
+            console.log(value)
+            return Math.abs(parseInt(value))
+        }
+
+        let timerId = setInterval(() => {
+            console.log("tick");
+            $scope.auth();
+        }, 5 * 60 * 1000);
     });
 })();
