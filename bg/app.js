@@ -192,7 +192,11 @@
         ];
 
         $scope.auth();
-        let timerId = setInterval($scope.auth(), 5 * 60 * 1000);
+        let timerId = setInterval(() => {
+            console.log("tick");
+            $scope.auth();
+            console.log("tick");
+        }, 5 * 60 * 1000);
     //});
 
     //app.controller('Values', function($scope, $sce, $http) {
