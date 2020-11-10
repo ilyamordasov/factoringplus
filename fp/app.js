@@ -16,6 +16,8 @@
     var app = angular.module('App', []);
     app.controller('Comission', function($scope, $sce, $http) {
 
+
+
         $scope.plan = [{"count":1234,"date":"январь","portfolio":1.076209747191E7},{"count":856,"date":"февраль","portfolio":9749297.47191},{"count":2026,"date":"март","portfolio":9593297.47191},{"count":1612,"date":"апрель","portfolio":1.152769747191E7},{"count":1156,"date":"май","portfolio":1.122145747191E7},{"count":1356,"date":"июнь","portfolio":1.284865747191E7},{"count":1600,"date":"июль","portfolio":1.45785720382544E7},{"count":1800,"date":"август","portfolio":1.58546434543944E7},{"count":1960,"date":"сентябрь","portfolio":1.82066434543944E7},{"count":2352,"date":"октябрь","portfolio":2.02317074208544E7},{"count":2822.4,"date":"ноябрь","portfolio":2.36185874208544E7},{"count":3669.12,"date":"декабрь","portfolio":2.80215314208544E7}];
 
         $scope.getPercent = function(array, value, key) {
@@ -62,51 +64,11 @@
             }
         }
 
-        $scope.getRestData = function() {
-            return new Promise(function(resolve,reject){
-                var settings = {
-                    "url": "https://cors-anywhere.herokuapp.com/https://bg.izumfin.com/api/dashboard/requestsrealtime?apiKey=97cd8a7f-063f-4f9c-8641-b972f1653bdc",
-                    "method": "GET",
-                    "crossdomain": true,
-                    "dataType": "json",
-                    "headers": {
-                        "SessionID": $scope.sessionID,
-                        "Content-type": "application/json"
-                    }
-                };
-                $http(settings)
-                .then(response => response)
-                .then(result => {resolve(result)})
-                .catch(error => console.log('error', error));
-            });
-        }
-
         $scope.getDataFromAPI = function(start, end) {
             return new Promise(function(resolve,reject){
                 
                 var settings = {
                     "url": "https://cors-anywhere.herokuapp.com/https://cloudfort.izumfin.com/api/Dashboard/bg/gar_count?date_s="+end+"&date_e="+start,
-                    "method": "GET",
-                    "crossdomain": true,
-                    "dataType": "json",
-                    "headers": {
-                        "SessionID": $scope.sessionID,
-                        "Content-type": "application/json"
-                    }
-                };
-                // console.log(settings.url)
-                $http(settings)
-                .then(response => response.data.gar_count)
-                .then(result => {resolve(result)})
-                .catch(error => console.log('error', error));
-            });
-        }
-
-        $scope.getDataFromMT = function(start, end) {
-            return new Promise(function(resolve,reject){
-                
-                var settings = {
-                    "url": "https://multitender.dl.api.qiwigarant.com/api/tendernotice/crm/dashboard?apiKey=9C45BBE8-FA56-4BA6-94A8-47B112CF1BBB&min_sum=3000&max_sum=50000000&date_s="+end+"&date_e="+start,
                     "method": "GET",
                     "crossdomain": true,
                     "dataType": "json",
@@ -138,14 +100,6 @@
                     $scope.$apply();
                 });
 
-            $scope.getRestData()
-                .then(response => response.data)
-                .then(result => {
-                    $scope.rest[0].value = result.mrk_req_count;
-                    $scope.rest[1].value = result.r_req_count;
-                    $scope.$apply();
-                });
-
             $scope.getDataFromAPI($scope.formatDate(new Date()), $scope.formatDate(new Date(new Date().getFullYear(),0,1))) // с 1 января по сегодня
                 .then(response => response)
                 .then(result => {
@@ -172,6 +126,7 @@
                         .then(response => response)
                         .then(res => {
                             var count_ly = res.reduce( ( sum, { release_sdelki } ) => sum + release_sdelki , 0);
+                            console.log(count, count_ly)
                             $scope.sdelki2[0].year = Math.floor(100 * count / count_ly - 100);
                             $scope.$apply();
                         });
@@ -212,11 +167,11 @@
                             $scope.sdelki2[1].year = Math.floor(100 * sdelki_1 / sdelki - 100);
                             
                             $scope.$apply();
-                            setTimeout(() => {
-                                $("#spinner").addClass('d-none');
-                                $('#dashboard').fadeIn('slow');
-                                $('#footer').fadeIn('slow');
-                            },1000);
+                            // setTimeout(() => {
+                            //     $("#spinner").addClass('d-none');
+                            //     $('#dashboard').fadeIn('slow');
+                            //     $('#footer').fadeIn('slow');
+                            // },1000);
 
                         });
                     $scope.$apply();
@@ -225,44 +180,41 @@
 
         $scope.today = new Date().getDate() + " " + ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'][new Date().getMonth()] + " " + new Date().getFullYear();
         $scope.month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'][new Date().getMonth()];
-        $scope.last_month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'][new Date().getMonth()-1] + " " + new Date().getFullYear();
 
         $scope.comissions = [
-            {label: "Сегодня", value: ""},
-            {label: "Вчера", value: ""},
-            {label: "Неделю назад", value: ""},
-            {label: "Год назад", value: ""}
+            {label: "Сегодня", value: 100323},
+            {label: "Вчера", value: 73980},
+            {label: "Неделю назад", value: 143141},
+            {label: "Год назад", value: 44706}
         ];
         
         $scope.sdelki = [
-            {value: "", avg_cheque: ""},
-            {value: "", avg_cheque: ""}
+            {value: 102, avg_cheque: 984},
+            {value: 2, avg_cheque: 605}
         ];
 
-        $scope.auth();
+        //$scope.auth();
     //});
 
     //app.controller('Values', function($scope, $sce, $http) {
         $scope.portfolio = [
-            {value: "", plan:"", year:""},
-            {value: "", plan:"", year:""},
-            //{value: 1790258456, plan:1, year:-67}
+            {value: 3900000000, plan:-32, year:104},
+            {value: 100000000, plan:-85, year:406}
         ];
         $scope.sdelki2 = [
-            {value: "", plan:"", year:""},
-            {value: "", plan:"", year:""},
-            //{value: 2156, plan:1, year:-67}
+            {value: 4010, plan:16, year:46},
+            {value: 186, plan:13, year:-13}
         ];
         $scope.new_sdelki = [
-            {value: "", plan:"", year:""},
-            {value: "", plan:"", year:""},
-            //{value: 124, plan:1, year:-67}
+            {value: 240, plan:-45, year:-40},
+            {value: 110, plan:-78, year:-15}
         ];
 
-        $scope.rest = [
-            {value: ""},
-            {value: ""},
-        ];
+        $scope.share = [
+            {value:2.9, plan:192, year:4},
+            {value:15.6, plan:21, year:68},
+            {value:2, plan:13, year:-13}
+        ]
 
         $scope.htmlDecode = function(input) {
             var e = document.createElement('span');
@@ -284,13 +236,18 @@
             return (num < 100) ? num.toFixed(fixed) : $sce.trustAsHtml(e);
         }
 
+        $scope.percentStyle = function(num) {
+            console.log(parseFloat(num))
+            return $sce.trustAsHtml(num + "<span style='font-size:16px;'>%</span>");
+        }
+
         $scope.strict = function(value) {
             return Math.abs(parseInt(value))
         }
 
-        let timerId = setInterval(() => {
-            console.log("tick");
-            $scope.auth();
-        }, 5 * 60 * 1000);
+        // let timerId = setInterval(() => {
+        //     console.log("tick");
+        //     $scope.auth();
+        // }, 5 * 60 * 1000);
     });
 })();

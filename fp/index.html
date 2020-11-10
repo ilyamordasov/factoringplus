@@ -1,7 +1,7 @@
 <html lang="ru" charset="utf-8">
     <head>
         <meta charset="UTF-8" />
-        <title>Цифровые банковские гарантии</title>
+        <title>Факторинг ПЛЮС</title>
         <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -12,29 +12,28 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="d-flex justify-content-center" style="position:absolute;width:100%;height: 100%;">
-            <div id="spinner" class="spinner-border spinner-border-sm" role="status" style="width:5rem;height:5rem;margin:auto;color:#FF7F00"></div>
+        <div class="d-flex justify-content-center d-none" style="position:absolute;width:100%;height: 100%;">
+            <div id="spinner" class="spinner-border spinner-border-sm" role="status" style="width:5rem;height:5rem;margin:auto;color:#4954DD"></div>
         </div>
-        <div id="dashboard" class="carousel slide" data-ride="carousel" data-interval="false" ng-app="App" style="display: none;">
+        <div id="dashboard" class="carousel slide" data-ride="carousel" data-interval="false" ng-app="App" style="display: block;">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="container" ng-controller="Comission">
                         <div class="row">
-                            <span class="col-md-4 label" ng-click="updateData()">ИТОГИ ДНЯ</span>
+                            <span class="col-md-4 label">ИТОГИ ДНЯ</span>
                             <div class="col-md-4 today my-auto">
                                 <div class="today-icon"></div>
                                 <span class="today-text">{{today}}</span>
                             </div>
                             <div class="col-md-4 product">
                                 <div class="product-oval"></div>
-                                <span class="product-text">Банковские гарантии</span>
                             </div>
                         </div>
                         <div class="row" style="padding-bottom:40px;">
-                            <div class="col-md-8 box" style="margin-right:24px;">
+                            <div class="col-md-8 box1" style="margin-right:24px;">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <span class="today-label">Комиссия</span>
+                                        <span class="today-label">Выдано сегодня</span>
                                     </div>
                                     <div class="col-md-12">
                                         <span class="today-sum" style="font-size: 72px;">{{comissions[0].value.toLocaleString('ru-RU')}} ₽</span>
@@ -63,7 +62,7 @@
                             <div class="col-md-3 box">
                                 <div class="row" style="margin-bottom: 24px;">
                                     <div class="col-md-12">
-                                        <span class="today-label">Сделки</span>
+                                        <span class="today-label">Количество клиентов</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -71,27 +70,27 @@
                                         <span class="today-label" style="font-size:14px;margin-top:24px;">всего</span>
                                     </div>
                                     <div class="col-md-6">
-                                        <span class="today-label" style="font-size:14px;margin-top:24px;">по новым клиентам</span>
+                                        <span class="today-label" style="font-size:14px;margin-top:24px;">новых</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" ng-repeat="s in sdelki">
-                                        <span class="today-sum">{{s.value}}</span>
+                                        <span class="today-sum1">{{s.value}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" ng-repeat="s in sdelki">
                                         <div class="progress-bar">
-                                            <div class="progress-value" style="width: {{getPercent(sdelki, s.value, 'value')}}%;"></div>
+                                            <div class="progress-value1" style="width: {{getPercent(sdelki, s.value, 'value')}}%;"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <span class="today-sum" style="font-size: 12px;opacity:0.4;">шт.</span>
+                                        <span class="today-sum1" style="font-size: 12px;opacity:0.4;">шт.</span>
                                     </div>
                                     <div class="col-md-6">
-                                        <span class="today-sum" style="font-size: 12px;opacity:0.4;">шт.</span>
+                                        <span class="today-sum1" style="font-size: 12px;opacity:0.4;">шт.</span>
                                     </div>
                                 </div>
                                 <div class="row progress-row">
@@ -104,46 +103,27 @@
                                         <span class="today-label" style="font-size:14px;margin-top:24px;">всего</span>
                                     </div>
                                     <div class="col-md-6">
-                                        <span class="today-label" style="font-size:14px;margin-top:24px;">по новым клиентам</span>
+                                        <span class="today-label" style="font-size:14px;margin-top:24px;">новых</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" style="cursor:hand;" ng-repeat="avg in sdelki" title="{{avg.avg_cheque.toLocaleString('ru-RU')}}">
-                                        <span class="today-sum">{{(avg.avg_cheque/1000).toFixed(1)}} <span style="font-size:16px;">тыс.</span></span>
+                                        <span class="today-sum1">{{(avg.avg_cheque/1000).toFixed(1)}} <span style="font-size:16px;">тыс.</span></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" ng-repeat="s in sdelki">
                                         <div class="progress-bar">
-                                            <div class="progress-value" style="width: {{getPercent(sdelki, s.avg_cheque, 'avg_cheque')}}%;"></div>
+                                            <div class="progress-value2" style="width: {{getPercent(sdelki, s.avg_cheque, 'avg_cheque')}}%;"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <span class="today-sum" style="font-size: 12px;opacity:0.4;">рублей</span>
+                                        <span class="today-sum1" style="font-size: 12px;opacity:0.4;">рублей</span>
                                     </div>
                                     <div class="col-md-6">
-                                        <span class="today-sum" style="font-size: 12px;opacity:0.4;">рублей</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row box" style="margin-top:10;margin-left:0px; width: 40%;">
-                                <span class="col-md-8 label" style="font-size: 16px; font-weight: 700; margin: auto;">Заявки находятся в работе</span>
-                                <div class="col-md-2 today my-auto">
-                                    <div class="row">
-                                        <div class="col-md-12 today my-auto" style="text-align: center;"><span style="font-size:18px;font-weight: 700;">{{rest[0].value}}</span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 today my-auto" style="font-size:12px;text-align: center;opacity:0.4"><span>МРК</span></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 today my-auto">
-                                    <div class="row">
-                                        <div class="col-md-12 today my-auto" style="text-align: center;"><span style="font-size:18px;font-weight: 700;">{{rest[1].value}}</span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 today my-auto" style="font-size:12px;text-align: center;opacity:0.4;"><span>Риски</span></div>
+                                        <span class="today-sum1" style="font-size: 12px;opacity:0.4;">рублей</span>
                                     </div>
                                 </div>
                             </div>
@@ -153,12 +133,11 @@
                 <div class="carousel-item">
                     <div class="container" ng-controller="Comission">
                         <div class="row">
-                            <span class="col-md-5 label">СВОДНЫЕ ПОКАЗАТЕЛИ</span>
+                            <span class="col-md-5 label" ng-click="updateData()">СВОДНЫЕ ПОКАЗАТЕЛИ</span>
                             <div class="col-md-4 today my-auto">
                             </div>
                             <div class="col-md-4 product">
                                 <div class="product-oval"></div>
-                                <span class="product-text">Банковские гарантии</span>
                             </div>
                         </div>
                         <div class="row box">
@@ -186,24 +165,24 @@
                                             <span style="font-size: 20px;font-weight: 500;">Доля рынка, %</span>
                                         </div>
                                         <div class="row">
-                                            <span style="opacity: 0.4;font-size: 14px;">{{last_month}}</span>
+                                            <span style="opacity: 0.4;font-size: 14px;">III квартал 2020</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row" style="height: 140px;">
                                     <div class="col-md-3 my-auto">
-                                        <span style="font-size: 18px; font-weight: 700;">Объем портфеля</span>
+                                        <span style="font-size: 24px; font-weight: 500;">Объем портфеля</span>
                                     </div>
                                     <div class="col-md-3 my-auto" ng-repeat="data in portfolio">
                                         <div class="row">
-                                            <span style="font-size: 48px; cursor:pointer;" ng-bind-html="abbreviateNumber(data.value, 1)" title="{{data.value.toLocaleString('ru')}} рублей"></span>
+                                            <span style="font-size: 48px;color:#4954DD;" ng-bind-html="abbreviateNumber(data.value, 1)"></span>
                                         </div>
                                         <div class="row" style="height: 24px;">
                                             <div class="col-md-2" style="padding-left:0; margin-right:24px;">
-                                                <span class="{{data.plan < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.plan < 0 ? '#ff7f00' : '#67c23a'}};">{{strict(data.plan)}}%</span>
+                                                <span class="{{data.plan < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.plan < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(data.plan)}}%</span>
                                             </div>
                                             <div class="col-md-2" style="padding-left:0;">
-                                                <span class="{{data.year < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.year < 0 ? '#ff7f00' : '#67c23a'}};">{{strict(data.year)}}%</span>
+                                                <span class="{{data.year < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.year < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(data.year)}}%</span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -215,21 +194,44 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- SHARE -->
+                                    <div class="col-md-3 my-auto">
+                                        <div class="row">
+                                            <span style="font-size: 48px;color:#4954DD;" ng-bind-html="percentStyle(share[0].value)"></span>
+                                        </div>
+                                        <div class="row" style="height: 24px;">
+                                            <div class="col-md-2" style="padding-left:0; margin-right:24px;">
+                                                <span class="{{share[0].plan < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{share[0].plan < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(share[0].plan)}}%</span>
+                                            </div>
+                                            <div class="col-md-2" style="padding-left:0;">
+                                                <span class="{{share[0].year < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{share[0].year < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(share[0].year)}}%</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2" style="padding-left:0; margin-right: 24px;">
+                                                <span style="font-size:12px; opacity:0.4">к плану</span>
+                                            </div>
+                                            <div class="col-md-2" style="padding-left:0;">
+                                                <span style="font-size:12px; opacity:0.4">за год</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end of SHARE-->
                                 </div>
                                 <div class="row" style="height: 140px;">
                                     <div class="col-md-3 my-auto">
-                                        <span style="font-size: 18px;font-weight: 700;">Количество сделок</span>
+                                        <span style="font-size: 24px;font-weight: 500;">Общее число клиентов</span>
                                     </div>
                                     <div class="col-md-3 my-auto" ng-repeat="data in sdelki2">
                                         <div class="row">
-                                            <span style="font-size: 48px;cursor:pointer;" ng-bind-html="abbreviateNumber(data.value, 1)" title="{{data.value.toLocaleString('ru')}} шт."></span>
+                                            <span style="font-size: 48px;color:#4954DD;" ng-bind-html="abbreviateNumber(data.value, 1)"></span>
                                         </div>
                                         <div class="row" style="height: 24px;">
                                             <div class="col-md-2" style="padding-left:0; margin-right:24px;">
-                                                <span class="{{data.plan < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.plan < 0 ? '#ff7f00' : '#67c23a'}};">{{strict(data.plan)}}%</span>
+                                                <span class="{{data.plan < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.plan < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(data.plan)}}%</span>
                                             </div>
                                             <div class="col-md-2" style="padding-left:0;">
-                                                <span class="{{data.year < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.year < 0 ? '#ff7f00' : '#67c23a'}};">{{strict(data.year)}}%</span>
+                                                <span class="{{data.year < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.year < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(data.year)}}%</span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -241,21 +243,44 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- SHARE -->
+                                    <div class="col-md-3 my-auto">
+                                        <div class="row">
+                                            <span style="font-size: 48px;color:#4954DD;" ng-bind-html="percentStyle(share[1].value)"></span>
+                                        </div>
+                                        <div class="row" style="height: 24px;">
+                                            <div class="col-md-2" style="padding-left:0; margin-right:24px;">
+                                                <span class="{{share[1].plan < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{share[1].plan < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(share[1].plan)}}%</span>
+                                            </div>
+                                            <div class="col-md-2" style="padding-left:0;">
+                                                <span class="{{share[1].year < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{share[1].year < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(share[1].year)}}%</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2" style="padding-left:0; margin-right: 24px;">
+                                                <span style="font-size:12px; opacity:0.4">к плану</span>
+                                            </div>
+                                            <div class="col-md-2" style="padding-left:0;">
+                                                <span style="font-size:12px; opacity:0.4">за год</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end of SHARE-->
                                 </div>
                                 <div class="row" style="height: 140px;">
                                     <div class="col-md-3 my-auto">
-                                        <span style="font-size: 18px; font-weight: 700;">Количество сделок<br/>по новым клиентам</span>
+                                        <span style="font-size: 24px; font-weight: 500;">Общее число<br/>новых клиентов</span>
                                     </div>
                                     <div class="col-md-3 my-auto" ng-repeat="data in new_sdelki">
                                         <div class="row">
-                                            <span style="font-size: 48px; cursor:pointer;" ng-bind-html="abbreviateNumber(data.value, 1)" title="{{data.value.toLocaleString('ru')}} шт."></span>
+                                            <span style="font-size: 48px;color:#4954DD;" ng-bind-html="abbreviateNumber(data.value, 1)"></span>
                                         </div>
-                                        <!--<div class="row" style="height: 24px;">
+                                        <div class="row" style="height: 24px;">
                                             <div class="col-md-2" style="padding-left:0; margin-right:24px;">
-                                                <span class="{{data.plan < 0 ? 'decrease' : 'increase'}}" style="font-size:18px; color:{{data.plan < 0 ? '#ff7f00' : '#67c23a'}};">{{data.plan}}%</span>
+                                                <span class="{{data.plan < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.plan < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(data.plan)}}%</span>
                                             </div>
                                             <div class="col-md-2" style="padding-left:0;">
-                                                <span class="{{data.year < 0 ? 'decrease' : 'increase'}}" style="font-size:18px; color:{{data.year < 0 ? '#ff7f00' : '#67c23a'}};">{{data.year}}%</span>
+                                                <span class="{{data.year < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{data.year < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(data.year)}}%</span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -265,8 +290,31 @@
                                             <div class="col-md-2" style="padding-left:0;">
                                                 <span style="font-size:12px; opacity:0.4">за год</span>
                                             </div>
-                                        </div>-->
+                                        </div>
                                     </div>
+                                    <!-- SHARE -->
+                                    <div class="col-md-3 my-auto">
+                                        <div class="row">
+                                            <span style="font-size: 48px;color:#4954DD;" ng-bind-html="percentStyle(share[2].value)"></span>
+                                        </div>
+                                        <div class="row" style="height: 24px;">
+                                            <div class="col-md-2" style="padding-left:0; margin-right:24px;">
+                                                <span class="{{share[2].plan < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{share[2].plan < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(share[2].plan)}}%</span>
+                                            </div>
+                                            <div class="col-md-2" style="padding-left:0;">
+                                                <span class="{{share[2].year < 0 ? 'decrease' : 'increase'}}" style="font-size:14px; color:{{share[2].year < 0 ? '#fa4b21' : '#67c23a'}};">{{strict(share[2].year)}}%</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2" style="padding-left:0; margin-right: 24px;">
+                                                <span style="font-size:12px; opacity:0.4">к плану</span>
+                                            </div>
+                                            <div class="col-md-2" style="padding-left:0;">
+                                                <span style="font-size:12px; opacity:0.4">за год</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end of SHARE-->
                                 </div>
                             </div>
                         </div>
@@ -282,8 +330,8 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        <img class="logo" src="assets/logo@3x.png"/>
-        <div id="footer" style="display: none;">
+        <img class="logo" src="assets/logo.png"/>
+        <div id="footer" style="display: block;">
             <div class="circle"></div>
         </div>
         <script src="app.js"></script>
